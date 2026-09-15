@@ -1,0 +1,18 @@
+:root{
+/* Neutros - 60% pantalla */
+--superficie:#F7F8F6;
+--superficie-alta:#FFFFFF;
+--borde:#DDE3DA;
+/* Marca - 30% (esquema analogo verde: hsl 100-140) */
+--color-marca:#1F5E14;
+--color-marca-sua:#EAF3E3;
+/* Accion y acento - 10% */
+--color-accion:#39A900;
+--color-acento:#F08A00;
+/* Texto (contrastes verificados WebAIM) */
+--texto:#15231A; /* 13.4:1 sobre --superficie */
+--texto-tenue:#4A5A50; /* 6.2:1 sobre --superficie */
+/* Semanticos */
+--exito:#2E7D32; --advertencia:#A85E00;
+--error:#B3261E; --info:#15506B;
+}
