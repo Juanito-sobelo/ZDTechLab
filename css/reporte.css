@@ -1,0 +1,12 @@
+@page{size:A4 portrait;margin:14mm 12mm 18mm}
+@media print{
+.panel__menu,.panel__barra,.no-imprimir{display:none !important}
+body{background:#fff;font-size:10.5pt}
+.reporte__encabezado{border-bottom:2.5px solid var(--color-accion);-webkit-print-color-adjust:exact;print-color-adjust:exact;display:flex;gap:1rem;align-items:center}
+table{width:100%;border-collapse:collapse}
+thead{display:table-header-group}
+tr,img,.grafico{break-inside:avoid}
+.reporte__pie{position:fixed;bottom:0;width:100%;font-size:8pt}
+}
+.reporte__encabezado{display:flex;gap:1rem;align-items:center;border-bottom:2.5px solid var(--color-accion);padding-bottom:.6rem;margin-bottom:1rem}
+.reporte__logo{width:64px;height:auto}
