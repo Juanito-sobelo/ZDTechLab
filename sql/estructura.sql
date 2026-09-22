@@ -1,0 +1,71 @@
+-- ZD.TechLab estructura (6 tablas + intentos)
+CREATE DATABASE IF NOT EXISTS zdtechlab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE zdtechlab;
+CREATE TABLE IF NOT EXISTS categorias(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(80) NOT NULL UNIQUE,
+descripcion VARCHAR(200) NULL,
+activo TINYINT(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS usuarios(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(100) NOT NULL,
+correo VARCHAR(120) NOT NULL UNIQUE,
+clave_hash VARCHAR(255) NOT NULL,
+rol ENUM('administrador','vendedor','consultor') NOT NULL DEFAULT 'vendedor',
+activo TINYINT(1) NOT NULL DEFAULT 1,
+bloqueado_hasta DATETIME NULL,
+creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+INDEX idx_correo(correo)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS intentos_acceso(
+id INT AUTO_INCREMENT PRIMARY KEY,
+correo VARCHAR(120) NOT NULL,
+exito TINYINT(1) NOT NULL,
+fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ip VARCHAR(45) NULL,
+INDEX idx_correo_fecha(correo,fecha)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS productos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(120) NOT NULL,
+categoria_id INT NOT NULL,
+precio DECIMAL(12,0) NOT NULL CHECK (precio>0),
+stock INT NOT NULL DEFAULT 0 CHECK (stock>=0),
+stock_minimo INT NOT NULL DEFAULT 5,
+activo TINYINT(1) NOT NULL DEFAULT 1,
+creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT fk_prod_cat FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE RESTRICT,
+INDEX idx_prod_nombre(nombre), INDEX idx_prod_activo(activo)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS clientes(
+id INT AUTO_INCREMENT PRIMARY KEY,
+documento VARCHAR(20) NOT NULL UNIQUE,
+nombre VARCHAR(120) NOT NULL,
+correo VARCHAR(120) NOT NULL UNIQUE,
+telefono VARCHAR(30) NULL,
+direccion VARCHAR(150) NULL,
+activo TINYINT(1) NOT NULL DEFAULT 1,
+creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS pedidos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+cliente_id INT NULL,
+fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+total DECIMAL(14,0) NOT NULL DEFAULT 0,
+estado ENUM('confirmado','anulado') NOT NULL DEFAULT 'confirmado',
+creado_por INT NULL,
+CONSTRAINT fk_ped_cli FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE SET NULL,
+CONSTRAINT fk_ped_usr FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE SET NULL,
+INDEX idx_ped_fecha(fecha), INDEX idx_ped_estado(estado)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS detalle_pedido(
+id INT AUTO_INCREMENT PRIMARY KEY,
+pedido_id INT NOT NULL,
+producto_id INT NOT NULL,
+cantidad INT NOT NULL CHECK (cantidad>0),
+precio_unitario DECIMAL(12,0) NOT NULL,
+CONSTRAINT fk_det_ped FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
+CONSTRAINT fk_det_prod FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE RESTRICT,
+INDEX idx_det_ped(pedido_id)
+) ENGINE=InnoDB;
