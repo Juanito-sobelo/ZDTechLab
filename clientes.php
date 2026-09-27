@@ -32,10 +32,10 @@ $av=$_SESSION['aviso']??null;unset($_SESSION['aviso']);
 <form method="get"><label for="q">Buscar</label><input id="q" name="q" value="<?=htmlspecialchars($b,ENT_QUOTES,'UTF-8')?>"><button class="boton" type="submit">Buscar</button></form>
 <table><caption>Listado (<?=$total?>)</caption><thead><tr><th scope="col">Doc</th><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Acciones</th></tr></thead>
 <tbody><?php foreach($rows as $r):?><tr><td><?=htmlspecialchars($r['documento'],ENT_QUOTES,'UTF-8')?></td><td><?=htmlspecialchars($r['nombre'],ENT_QUOTES,'UTF-8')?></td><td><?=htmlspecialchars($r['correo'],ENT_QUOTES,'UTF-8')?></td>
-<td><a href="clientes.php?editar=<?=$r['id']?>">Editar</a>
+<td><a href="clientes.php?editar=<?=$r['id']?>#form-edicion">Editar</a>
 <form method="post" style="display:inline" onsubmit="return confirm('Desactivar?')"><input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>"><input type="hidden" name="acc" value="eliminar"><input type="hidden" name="id" value="<?=$r['id']?>"><button class="boton-mini boton-peligro" type="submit">Eliminar</button></form></td></tr><?php endforeach;?></tbody></table>
 <p><?php for($i=1;$i<=$pages;$i++):?><a href="clientes.php?q=<?=urlencode($b)?>&page=<?=$i?>"><?=$i?></a> <?php endfor;?></p>
-<h2><?= $edit?'Editar':'Nuevo'?> cliente</h2>
+<h2 id="form-edicion"><?= $edit?'Editando: '.htmlspecialchars($edit['nombre'],ENT_QUOTES,'UTF-8'):'Nuevo cliente'?></h2>
 <form method="post"><input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>"><input type="hidden" name="id" value="<?=$edit['id']??0?>">
 <label for="documento">Documento</label><input id="documento" name="documento" required value="<?=htmlspecialchars($edit['documento']??'',ENT_QUOTES,'UTF-8')?>">
 <label for="nombre">Nombre</label><input id="nombre" name="nombre" required minlength="3" value="<?=htmlspecialchars($edit['nombre']??'',ENT_QUOTES,'UTF-8')?>">

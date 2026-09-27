@@ -44,11 +44,11 @@ $av=$_SESSION['aviso']??null; unset($_SESSION['aviso']);
 <tbody><?php foreach($rows as $r):?><tr>
 <td><?=htmlspecialchars($r['nombre'],ENT_QUOTES,'UTF-8')?></td><td><?=htmlspecialchars($r['categoria'],ENT_QUOTES,'UTF-8')?></td>
 <td>$ <?=number_format((float)$r['precio'],0,',','.')?></td><td><?=$r['stock']?></td>
-<td><a href="productos.php?editar=<?=$r['id']?>">Editar</a>
+<td><a href="productos.php?editar=<?=$r['id']?>#form-edicion">Editar</a>
 <form method="post" style="display:inline" onsubmit="return confirm('Desactivar?')"><input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>"><input type="hidden" name="acc" value="eliminar"><input type="hidden" name="id" value="<?=$r['id']?>"><button class="boton-mini boton-peligro" type="submit">Eliminar</button></form></td></tr>
 <?php endforeach;?></tbody></table>
 <p><?php for($i=1;$i<=$pages;$i++):?><a href="productos.php?q=<?=urlencode($b)?>&page=<?=$i?>"><?=$i?></a> <?php endfor;?></p>
-<h2><?= $edit?'Editar':'Nuevo'?> producto</h2>
+<h2 id="form-edicion"><?= $edit?'Editando: '.htmlspecialchars($edit['nombre'],ENT_QUOTES,'UTF-8'):'Nuevo producto'?></h2>
 <form id="form-producto" method="post">
 <input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>">
 <input type="hidden" name="id" value="<?=$edit['id']??0?>">
