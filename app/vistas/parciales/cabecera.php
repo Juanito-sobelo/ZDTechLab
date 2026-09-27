@@ -2,7 +2,7 @@
 require_once __DIR__.'/../../seguridad/guardia.php';
 $ses=$_SESSION['usuario'];
 ?><!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZD.TechLab</title><link rel="stylesheet" href="<?=BASE_URL?>css/tokens.css"><link rel="stylesheet" href="<?=BASE_URL?>css/estilos.css"></head>
+<title>ZD.TechLab</title><link rel="stylesheet" href="<?=BASE_URL?>css/tokens.css?v=2"><link rel="stylesheet" href="<?=BASE_URL?>css/estilos.css?v=2"></head>
 <body><div class="panel">
 <header class="panel__barra">
 <div style="display:flex;align-items:center;gap:.7rem">

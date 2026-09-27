@@ -13,7 +13,7 @@ $pdo->prepare("INSERT INTO usuarios(nombre,correo,clave_hash,rol) VALUES(:n,:c,:
 ->execute([':n'=>$n,':c'=>$c,':h'=>password_hash($cl,PASSWORD_DEFAULT),':r'=>$rol]);
 $msg='Usuario creado. <a href="login.php">Ingresar</a>';}catch(Throwable $e){$msg='Correo ya existe.';}}
 }
-?><!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Registro - ZD.TechLab</title><link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/estilos.css"></head>
+?><!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Registro - ZD.TechLab</title><link rel="stylesheet" href="css/tokens.css?v=2"><link rel="stylesheet" href="css/estilos.css?v=2"></head>
 <body><main class="pantalla-ingreso"><h1>Registro</h1>
 <?php if($msg):?><p class="alerta-exito"><?=$msg?></p><?php endif;?>
 <form method="post"><input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>">

@@ -24,7 +24,7 @@ header('Location: dashboard.php');exit;}
 else{registrarIntento($pdo,$correo,false); $error='Correo o contraseña incorrectos.';}
 }}
 ?><!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ingreso - ZD.TechLab</title><link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/estilos.css"></head>
+<title>Ingreso - ZD.TechLab</title><link rel="stylesheet" href="css/tokens.css?v=2"><link rel="stylesheet" href="css/estilos.css?v=2"></head>
 <body><main class="pantalla-ingreso">
 <img src="assets/img/logo.svg" alt="Logo de ZD.TechLab" width="120">
 <h1>Ingreso al panel de gestion</h1>
