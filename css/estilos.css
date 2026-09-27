@@ -21,7 +21,9 @@ a{color:var(--info)}
 .panel{display:grid;grid-template-columns:240px 1fr;grid-template-rows:60px 1fr auto;grid-template-areas:"barra barra" "menu contenido" "pie pie";min-height:100vh}
 .panel__barra{grid-area:barra;display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem;background:var(--color-marca);color:#fff;position:sticky;top:0;z-index:10}
 .panel__menu{grid-area:menu;background:#15231A;color:#fff;padding:1rem .7rem}
-.panel__contenido{grid-area:contenido;padding:1.6rem;overflow-y:auto}
+.panel__contenido{grid-area:contenido;padding:2rem 2.2rem;overflow-y:auto}
+.panel__contenido>h1{margin:0 0 1.2rem}
+.panel__contenido>h2{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--borde)}
 .panel__pie{grid-area:pie;padding:.8rem 1.2rem;border-top:1px solid var(--borde);font-size:.85rem;background:var(--superficie-alta)}
 .menu{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
 .menu__enlace{display:block;padding:.6rem .8rem;border-radius:4px;color:#DDE3DA;text-decoration:none}
@@ -34,7 +36,7 @@ a{color:var(--info)}
 .tarjeta__rotulo{margin:0;font-size:.85rem;color:var(--texto-tenue)}
 .tarjeta__valor{margin:.2rem 0 0;font-size:1.7rem;font-weight:800}
 /* Tablas */
-table{width:100%;border-collapse:collapse;background:var(--superficie-alta)}
+table{width:100%;border-collapse:collapse;background:var(--superficie-alta);margin:1rem 0 1.5rem;border:1px solid var(--borde);border-radius:6px;overflow:hidden}
 caption{text-align:left;font-weight:700;padding:.5rem 0}
 thead th{background:var(--color-marca);color:#fff;padding:.6rem;position:sticky;top:60px}
 tbody td{padding:.5rem .6rem;border-bottom:1px solid var(--borde)}
