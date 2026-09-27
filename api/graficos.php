@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__.'/app/seguridad/guardia.php';
-require_once __DIR__.'/app/config/conexion.php';
+require_once __DIR__.'/../app/seguridad/guardia.php';
+require_once __DIR__.'/../app/config/conexion.php';
 header('Content-Type: application/json; charset=utf-8');
 $pdo=Conexion::obtener();
 $meses=array_reverse($pdo->query("SELECT periodo,total_vendido FROM v_ventas_mes ORDER BY periodo DESC LIMIT 12")->fetchAll());

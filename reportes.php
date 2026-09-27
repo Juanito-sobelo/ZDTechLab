@@ -45,8 +45,8 @@ require __DIR__.'/app/vistas/parciales/menu.php';
 <?php if($tipo==='categoria'):?>
 <div class="graficos no-imprimir"><div class="grafico"><canvas id="g-ventas"></canvas></div><div class="grafico"><canvas id="g-categorias"></canvas></div></div>
 <table><thead><tr><th>Categoria</th><th>Unidades</th><th>Total vendido</th><th>%</th></tr></thead><tbody>
-<?php foreach($cat as $f):?><tr><td><?=htmlspecialchars($f['categoria'],ENT_QUOTES,'UTF-8')?></td><td><?=$f['unidades']?></td><td>$ <?=number_format($f['total_vendido'],0,',','.')?></td><td><?=round($totCat?$f['total_vendido']*100/$totCat:0,1)?></td></tr><?php endforeach;?>
-<tr><td><strong>Total general</strong></td><td><strong><?=array_sum(array_column($cat,'unidades'))?></strong></td><td><strong>$ <?=number_format($totCat,0,',','.')?></strong></td><td><strong>100</strong></td></tr>
+<?php foreach($cat as $f):?><tr><td><?=htmlspecialchars($f['categoria'],ENT_QUOTES,'UTF-8')?></td><td><?=$f['unidades']?></td><td>$ <?=number_format((float)$f['total_vendido'],0,',','.')?></td><td><?=round($totCat?(float)$f['total_vendido']*100/$totCat:0,1)?></td></tr><?php endforeach;?>
+<tr><td><strong>Total general</strong></td><td><strong><?=array_sum(array_column($cat,'unidades'))?></strong></td><td><strong>$ <?=number_format((float)$totCat,0,',','.')?></strong></td><td><strong>100</strong></td></tr>
 </tbody></table>
 <?php elseif($tipo==='stock'):?>
 <table><thead><tr><th>Producto</th><th>Categoria</th><th>Stock</th><th>Minimo</th></tr></thead><tbody>
@@ -54,7 +54,7 @@ require __DIR__.'/app/vistas/parciales/menu.php';
 </tbody></table>
 <?php else:?>
 <table><thead><tr><th>Cliente</th><th>Pedidos</th><th>Total comprado</th></tr></thead><tbody>
-<?php foreach($cli as $f):?><tr><td><?=htmlspecialchars($f['nombre'],ENT_QUOTES,'UTF-8')?></td><td><?=$f['pedidos']?></td><td>$ <?=number_format($f['total_comprado'],0,',','.')?></td></tr><?php endforeach;?>
+<?php foreach($cli as $f):?><tr><td><?=htmlspecialchars($f['nombre'],ENT_QUOTES,'UTF-8')?></td><td><?=$f['pedidos']?></td><td>$ <?=number_format((float)$f['total_comprado'],0,',','.')?></td></tr><?php endforeach;?>
 </tbody></table>
 <?php endif;?>
 <p class="t5 reporte__pie">Documento generado automaticamente por ZD.TechLab. Informacion de uso interno. Pagina 1 de 1</p>

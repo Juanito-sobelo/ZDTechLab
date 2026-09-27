@@ -36,10 +36,10 @@ $av=$_SESSION['aviso']??null;unset($_SESSION['aviso']);
 <h2>Nuevo pedido (transaccion descuenta stock)</h2>
 <form method="post"><input type="hidden" name="csrf" value="<?=htmlspecialchars(tokenCsrf(),ENT_QUOTES,'UTF-8')?>">
 <label for="cliente_id">Cliente</label><select id="cliente_id" name="cliente_id" required><option value="">Seleccione</option><?php foreach($clientes as $c):?><option value="<?=$c['id']?>"><?=htmlspecialchars($c['nombre'],ENT_QUOTES,'UTF-8')?></option><?php endforeach;?></select>
-<label for="producto_id">Producto</label><select id="producto_id" name="producto_id" required><option value="">Seleccione</option><?php foreach($prods as $p):?><option value="<?=$p['id']?>"><?=htmlspecialchars($p['nombre'],ENT_QUOTES,'UTF-8')?> - $<?=number_format($p['precio'],0,',','.')?> (stock <?=$p['stock']?>)</option><?php endforeach;?></select>
+<label for="producto_id">Producto</label><select id="producto_id" name="producto_id" required><option value="">Seleccione</option><?php foreach($prods as $p):?><option value="<?=$p['id']?>"><?=htmlspecialchars($p['nombre'],ENT_QUOTES,'UTF-8')?> - $<?=number_format((float)$p['precio'],0,',','.')?> (stock <?=$p['stock']?>)</option><?php endforeach;?></select>
 <label for="cantidad">Cantidad</label><input id="cantidad" name="cantidad" type="number" min="1" value="1" required>
 <button class="boton" type="submit">Registrar pedido</button></form>
 <h2>Historial (el borrado logico mantiene el historico)</h2>
 <table><thead><tr><th>#</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th></tr></thead>
-<tbody><?php foreach($pedidos as $p):?><tr><td><?=$p['id']?></td><td><?=htmlspecialchars($p['cliente']??'General',ENT_QUOTES,'UTF-8')?></td><td><?=$p['fecha']?></td><td>$ <?=number_format($p['total'],0,',','.')?></td><td><?=$p['estado']?></td></tr><?php endforeach;?></tbody></table></main>
+<tbody><?php foreach($pedidos as $p):?><tr><td><?=$p['id']?></td><td><?=htmlspecialchars($p['cliente']??'General',ENT_QUOTES,'UTF-8')?></td><td><?=$p['fecha']?></td><td>$ <?=number_format((float)$p['total'],0,',','.')?></td><td><?=$p['estado']?></td></tr><?php endforeach;?></tbody></table></main>
 <?php require __DIR__.'/app/vistas/parciales/pie.php'; ?>
