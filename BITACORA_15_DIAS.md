@@ -1,4 +1,4 @@
-# BITACORA 15 DIAS - ZD.TechLab (resume a mano o imprime a PDF)
+BITACORA 15 DIAS - ZD.TechLab
 Dia01 color: dibuje circulo 12 matices. Analice banco/ERP/tienda: dominante/apoyo/acento + esquema. Escala 5 tonos hsl. Error: confundia hex con hsl. Solucion: usar hsl() cambiando solo L.
 
 Dia02 paleta: defini ZD.TechLab, logo SVG, tokens por funcion (--color-accion no --verde). Verifique WebAIM: texto 13.4:1 AAA, tenue 6.2:1 AA. Error: verde puro 3.1:1 falla. Solucion: marca oscura #1F5E14.
