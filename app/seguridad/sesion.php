@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+if(!defined('BASE_URL')) define('BASE_URL','/ZDTechLab/');
 const INACTIVIDAD_MAX=1800; const SESION_MAX=28800;
 function iniciarSesionSegura(): void{
 if(session_status()===PHP_SESSION_ACTIVE) return;

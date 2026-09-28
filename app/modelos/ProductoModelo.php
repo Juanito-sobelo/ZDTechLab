@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-define('BASE_URL','/');
+if(!defined('BASE_URL')) define('BASE_URL','/ZDTechLab/');
 final class ProductoModelo{
 public function __construct(private PDO $pdo){}
 public function listar(string $b='',int $pag=1,int $pp=10): array{
